@@ -1,0 +1,38 @@
+<annotation>
+	<folder>slice_raw</folder>
+	<filename>slice_8-8-2017_13.tiff</filename>
+	<path>C:\Users\might\Dropbox (GaTech)\Shared folders\AND_Project\slice_images_raw\pre2018\slice_raw\slice_8-8-2017_13.tiff</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1280</width>
+		<height>1024</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>neuron</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>62</xmin>
+			<ymin>153</ymin>
+			<xmax>250</xmax>
+			<ymax>332</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>neuron</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>665</xmin>
+			<ymin>723</ymin>
+			<xmax>887</xmax>
+			<ymax>932</ymax>
+		</bndbox>
+	</object>
+</annotation>
