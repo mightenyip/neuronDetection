@@ -2,6 +2,15 @@ import tkinter as tk
 from tkinter import ttk, StringVar
 from cv2 import cv2
 from PIL import Image, ImageTk
+from yolo import YOLO
+import pymmcore
+from timeit import default_timer as timer
+from datetime import datetime
+
+now = datetime.now() # datetime object containing current date and time
+print("now =", now)
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
+date = now.strftime("%b-%d-%Y")
 
 class PBL_APP(tk.Tk): 
       
@@ -118,17 +127,53 @@ class MainPage(tk.Frame):
         self.cap = cv2.VideoCapture(0)
 
         self.show_frame()
-        
+
     def show_frame(self):
-        _, frame = self.cap.read()
-        frame = cv2.flip(frame, 1)
-        cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
-        img = Image.fromarray(cv2image)
-        imgtk = ImageTk.PhotoImage(image=img)
-        self.lmain.imgtk = imgtk
-        self.lmain.configure(image=imgtk)
-        self.lmain.after(10, self.show_frame)
-    
+        # _, frame = self.cap.read()
+        # frame = cv2.flip(frame, 1)
+        # cv2image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+        # img = Image.fromarray(cv2image)
+        # imgtk = ImageTk.PhotoImage(image=img)
+        # self.lmain.imgtk = imgtk
+        # self.lmain.configure(image=imgtk)
+        # self.lmain.after(10, self.show_frame)
+
+        mmc = pymmcore.CMMCore()
+        print('-----setup cam-----')
+        mm_dir = 'C:/Program Files/Micro-Manager-2.0gamma/'
+        mmc.setDeviceAdapterSearchPaths([mm_dir])
+        print(mmc.getVersionInfo())
+        print(mmc.getAPIVersionInfo())
+
+        use_YOLO = False
+        my_yolo = YOLO()  # start yolo session
+
+        print('-----load cam-----')
+        # print(os.path.join(mm_dir, 'MMConfig_1.cfg'))
+        mmc.loadSystemConfiguration(mm_dir + 'MMConfig_QCam.cfg')
+        mmc.setExposure(200)
+
+        cv2.namedWindow('live', cv2.WINDOW_AUTOSIZE)
+        mmc.startContinuousSequenceAcquisition(1)
+        while True:
+            if mmc.getRemainingImageCount() > 0:
+                start = timer()
+                frame = mmc.popNextImage()
+
+                # Run detection
+                if use_YOLO:
+                    alter = contrastStretch(frame, min_range, max_range)
+                    image = Image.fromarray(np.uint8(alter))
+                    output = detect_img(my_yolo, image)
+                    output = np.array(output)
+                    cv2.imshow('live', output)
+                else:
+                    cv2.imshow('live', frame)
+                end = timer()
+                save_time = end - start
+            if cv2.waitKey(1) & 0xFF == ord('q'):  # This break key is critical, otherwise the live image does not load
+                break
+
     def capture_start(self):
         fps = 30
  
@@ -151,10 +196,10 @@ class MainPage(tk.Frame):
             cv2.imshow('frame',frame)
             cv2.waitKey(1)
             numFramesRemaining -= 1
-    
+
     def capture_stop(self):
         self.cap.release()
-    
+
     def popup_cell_detection(self):
         win = tk.Toplevel()
         win.geometry("250x160")

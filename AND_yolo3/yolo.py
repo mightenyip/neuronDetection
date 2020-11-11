@@ -18,30 +18,14 @@ from skimage import color
 
 class YOLO(object):
     _defaults = {
-        # if on mighten comp
-        # "model_path": 'C:/Users/might\Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_005_untouch_aug825/trained_weights_final.h5',
-        # "model_path": 'C:/Users/might\Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_004_histeq_aug825/trained_weights_final.h5',
-        # "model_path": 'C:/Users/might\Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_002_histeq_825/trained_weights_final.h5',
-        # "model_path": 'C:/Users/might\Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_003_histeq_1050/trained_weights_final.h5',
-        # "model_path": 'C:/Users/might\Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_006_histeq_aug1050/trained_weights_final.h5',
-        # "model_path": 'C:/Users/might\Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_007_untouch_825/trained_weights_final.h5',
-        # "model_path": 'C:/Users/might\Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_008_untouch_1050/trained_weights_final.h5',
-        "model_path": 'C:/Users/might\Dropbox (GaTech)/Shared folders/AND_Project/010/trained_weights_final.h5',
-
-        # weights number labeled to training set YOLOnet trained
-        # "anchors_path": 'model_data/yolo_anchors.txt',
-        # "anchors_path": 'model_data/yolo_anchors_crop_only.txt',
-        "anchors_path": 'model_data/yolo_anchors_redo.txt',
+        "model_path": 'C:/Users/myip7/Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_011_full_untouch_1050/trained_weights_final.h5',
+        # change path and weights number here
+        "anchors_path": 'C:/Users/myip7/Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_011_full_untouch_1050/yolo_anchors_full_untouch.txt',
         "classes_path": 'model_data/AND_classes.txt',
-        # if on mercedes comp
-        # "model_path": 'C:/Users/mgonzalez91/Dropbox (GaTech)/Coursework/SU20 - Digital Image Processing/AND_Project/yolo_weights_cropped_aug/trained_weights_final.h5',
-        # "model_path": 'C:/Users/mgonzalez91/Dropbox (GaTech)/Coursework/SU20 - Digital Image Processing/AND_Project/yolo_weights_histEq_augmented/trained_weights_final.h5',
-        # "anchors_path": 'C:/Users/mgonzalez91/AND_repo/AND_Project-1/AND_yolo3/model_data/yolo_anchors.txt',
-        # "classes_path": 'C:/Users/mgonzalez91/AND_repo/AND_Project-1/AND_yolo3/model_data/AND_classes.txt',
-        "score" : 0.3, # was .3
-        "iou" : 0.35, # was .45
-        "model_image_size" : (416, 416),
-        "gpu_num" : 1,
+        "score": 0.3,  # was .3
+        "iou": 0.45,  # was .45
+        "model_image_size": (416, 416),
+        "gpu_num": 1,
     }
     @classmethod
     def get_defaults(cls, n):
