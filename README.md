@@ -1,9 +1,12 @@
 # neuronDetection_YOLO
-By Mighten Yip and Mercedes Gonzalez (Precision Biosystems Laboratory at Georgia Tech, 2020).
+By Mighten Yip and Mercedes Gonzalez ([Precision Biosystems Laboratory](http://pbl.gatech.edu/) at Georgia Tech, 2020).
 
-Clone/fork this repository into your preferred folder location. 
+This repository allows the camera (those compatible with Micro-manager) to interact with the neuron detection YOLOv3 algorithm in acute mouse brain slice.
+Patch clamp experiments to verify the health of the neurons used Scientifica manipulator/stage and a digitally controlled [pressure control box](http://neuromaticdevices.com).
 
-liveimaging_um.py is the origin file to run the neuron detection algorithm.
+To get started: clone/fork this repository into your preferred folder location. 
+
+liveimaging_um.py is the origin file to run the neuron detection algorithm. Make sure the source code is updated with your specific Micro-manager config file. 
 
 All training, validation, and evaluation of the neural networks was done in Python, using the following software packages:
 * Python v3.6.8
