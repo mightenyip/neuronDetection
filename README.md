@@ -1,4 +1,4 @@
-# neuronDetection_YOLO
+# Automated Neuron Detection using YOLOv3
 By Mighten Yip and Mercedes Gonzalez ([Precision Biosystems Laboratory](http://pbl.gatech.edu/) at Georgia Tech, 2020).
 
 This repository allows the camera (those compatible with Micro-manager) to interact with the neuron detection YOLOv3 algorithm in acute mouse brain slice.
@@ -19,6 +19,7 @@ All training, validation, and evaluation of the neural networks was done in Pyth
 * Pillow v7.2.0
 * Scikit-image v0.16.2
 * Dippykit v3.0.0
+* pymmcore 10.0.0.1
 
 The network parameters used include:
 1)  Optimizer: ”Adam”
