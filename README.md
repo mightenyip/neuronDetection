@@ -16,3 +16,8 @@ All training, validation, and evaluation of the neural networks was done in Pyth
 * Pillow v7.2.0
 * Scikit-image v0.16.2
 * Dippykit v3.0.0
+
+The network parameters used include:
+1)  Optimizer: ”Adam”
+2)  Learning rate: 0.001
+3)  Batch size: 8
