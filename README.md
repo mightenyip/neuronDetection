@@ -8,7 +8,7 @@ To get started: clone/fork this repository into your preferred folder location.
 
 liveimaging_um.py is the origin file to run the neuron detection algorithm. Make sure the source code is updated with your specific Micro-manager config file. 
 
-All pre-processing, training, validation, and evaluation of the neural networks was done in Python, using the following software packages:
+All preprocessing, training, validation, and evaluation of the neural networks was done in Python, using the following software packages:
 * Python v3.6.8
 * Tensorflow-gpu v1.14 (can be regular tensorflow-v1.14 if running on CPU)
 * Keras v2.1.5
