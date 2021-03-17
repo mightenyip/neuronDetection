@@ -1,3 +1,11 @@
+"""
+Automated neuron detection in rodent brain slice
+
+    Mighten Yip
+    Mercedes Gonzalez
+
+"""
+
 from os import listdir
 from os.path import isfile, join
 import os
@@ -16,7 +24,7 @@ now = datetime.now() # datetime object containing current date and time
 print("now =", now)
 dt_string = now.strftime("%d/%m/%Y %H:%M:%S") # dd/mm/YY H:M:S
 date = now.strftime("%b-%d-%Y")
-M = 1280
+M = 1280 # M and N are dependent on your camera pixel resolution
 N = 1024
 
 save_path = 'C:/Users/myip7/Documents/AND_Data/'
@@ -34,25 +42,11 @@ def contrastStretch(image, min, max):
     minO = 0  # minimum intensity (output)
     maxO = 255  # maxmimum intensity (output)
     iO = (iI - minI) * (((maxO - minO) / (maxI - minI)) + minO)  # image output    # for m in range(0,M):
-    # M = 1280
-    # N = 1024
-    # for m in range(0,M):
-    #     for n in range(0,N):
-    #         if minI < iI[m,n] < maxI:
-    #             iI[m,n] = iI[m,n]
-    #         elif iI[m,n] < minI:
-    #             iI[m,n] = 0
-    #         elif iI[m,n] > maxI:
-    #             iI[m,n] = 255
-    # if iI < minI:
-    #     iO = 0
-    # if iI > maxI:
-    #     iO = 255
     return iO
 
 mmc = pymmcore.CMMCore()
 print('-----setup cam-----')
-mm_dir = 'C:/Program Files/Micro-Manager-2.0gamma/'
+mm_dir = 'C:/Program Files/Micro-Manager-2.0gamma/' # locate your micromanager folder
 mmc.setDeviceAdapterSearchPaths([mm_dir])
 print(mmc.getVersionInfo())
 print(mmc.getAPIVersionInfo())
@@ -62,27 +56,27 @@ my_yolo = YOLO() # start yolo session
 
 print('-----load cam-----')
 # print(os.path.join(mm_dir, 'MMConfig_1.cfg'))
-mmc.loadSystemConfiguration(mm_dir + 'MMConfig_QCam.cfg')
+mmc.loadSystemConfiguration(mm_dir + 'MMConfig_QCam.cfg') # load your micromanager camera configuration file
 mmc.setExposure(200)
 mmc.snapImage()
 im1 = mmc.getImage()
 
 # print('----snap an image-----')
-min_range = 55 #30
-max_range = 80
-showFig = 0
-if showFig:
-    plt.figure(1)
-    conStretch_vec = np.vectorize(contrastStretch)
-    img = conStretch_vec(im1, min_range, max_range)
-    plt.subplot(2,1,1)
-    plt.imshow(im1,'gray')
-    plt.subplot(2,1,2)
-    plt.hist(img,10)
-    plt.show()
+# min_range = 55 #30 # show the contrast stretch of an initial image from your camera if desired
+# max_range = 80
+# showFig = 0
+# if showFig:
+#     plt.figure(1)
+#     conStretch_vec = np.vectorize(contrastStretch)
+#     img = conStretch_vec(im1, min_range, max_range)
+#     plt.subplot(2,1,1)
+#     plt.imshow(im1,'gray')
+#     plt.subplot(2,1,2)
+#     plt.hist(img,10)
+#     plt.show()
 
 # print('-----runnit-----')
-timeLog = save_path + date + '_test_inference_time.txt'
+timeLog = save_path + date + '_test_inference_time.txt' # check the inference time from the CNN with your system
 logFileTime = open(timeLog, mode='a')
 logFileTime.write("%s" % dt_string)
 

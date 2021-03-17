@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-ECE 6258: Digital Image Processing
-    AND Project Code
+Automated neuron detection in rodent brain slice
 
     Mighten Yip
     Mercedes Gonzalez
@@ -28,10 +27,10 @@ tf.compat.v1.disable_eager_execution()
 
 class YOLO(object):
     _defaults = {
-        # For Chris:
-        "model_path": 'C:/Users/myip7/Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_011_full_untouch_1050/trained_weights_final.h5', # change path and weights number here 
-        "anchors_path": 'C:/Users/myip7/Dropbox (GaTech)/Shared folders/AND_Project/yolo_weights_011_full_untouch_1050/yolo_anchors_full_untouch.txt',
-        "classes_path": 'C:/Users/myip7/Dropbox (GaTech)/Shared folders/AND_Project/FINAL_CODE/CNN/model_data/AND_classes.txt',
+        # NOTE: Change the model, anchors and classes path dependent on your system!
+        "model_path": 'C:/Users/myip7/Documents/GitHub/neuronDetection/AND_yolo3/trained_weights_final.h5', # change path and weights number here 
+        "anchors_path": 'C:/Users/myip7/Documents/GitHub/neuronDetection/AND_yolo3/yolo_anchors_full_untouch.txt',
+        "classes_path": 'C:/Users/myip7/Documents/GitHub/neuronDetection/AND_yolo3/AND_classes.txt',
         "score" : 0.3, # was .3
         "iou" : 0.45, # was .45
         "model_image_size" : (416, 416),
